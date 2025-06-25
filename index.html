@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Diadorin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .video-container {
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+    .video-container video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+  </style>
+</head>
+<body class="text-white bg-black">
+
+  <!-- Seção com vídeo -->
+  <section class="video-container relative">
+    <video autoplay muted loop playsinline>
+      <source src="video1.mp4" type="video/mp4" />
+      Seu navegador não suporta vídeo em HTML5.
+    </video>
+
+    <!-- Navbar -->
+    <nav class="absolute top-0 left-0 w-full z-20 px-6 py-5 bg-transparent backdrop-blur-sm">
+      <div class="max-w-6xl mx-auto flex items-center justify-between">
+        <!-- Botão do menu para mobile -->
+        <button id="menuBtn" class="md:hidden text-white focus:outline-none">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+
+        <!-- Menu Desktop -->
+        <ul id="menu" class="hidden md:flex items-center text-lg font-semibold gap-6">
+          <li><a href="#home" class="hover:text-yellow-400 transition">Início</a></li>
+          <li><a href="#cardapio" class="hover:text-yellow-400 transition">Cardápio</a></li>
+          <li class="mx-4">
+            <img src="logo.png" alt="Logo" class="w-12 h-12 object-contain" />
+          </li>
+          <li><a href="#sobre" class="hover:text-yellow-400 transition">Sobre</a></li>
+          <li><a href="#feedbacks" class="hover:text-yellow-400 transition">Feedback</a></li>
+          <li><a href="#contato" class="hover:text-yellow-400 transition">Contato</a></li>
+        </ul>
+
+        <!-- Logo para mobile -->
+        <div class="md:hidden">
+          <img src="logo.png" alt="Logo" class="w-10 h-10 object-contain" />
+        </div>
+      </div>
+    </nav>
+  </section>
+
+  <!-- Destaques -->
+  <section id="destaques" class="py-20 px-6 bg-gradient-to-br from-black via-gray-900 to-yellow-900 text-white text-center">
+    <h2 class="text-4xl font-bold mb-14">🔥 Mais Pedidos</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 max-w-7xl mx-auto">
+      <div class="flex flex-col items-center group">
+        <img src="burguer1.jpg" alt="Cheddar Bacon" class="cursor-pointer w-full h-40 object-cover rounded-full shadow-lg group-hover:scale-105 transition duration-300" onclick="openImage(this.src)">
+        <h3 class="text-lg font-semibold mt-4 text-yellow-400">Combo casal</h3>
+      </div>
+      <div class="flex flex-col items-center group">
+        <img src="burguer3.png" alt="Clássico da Casa" class="cursor-pointer w-full h-40 object-cover rounded-full shadow-lg group-hover:scale-105 transition duration-300" onclick="openImage(this.src)">
+        <h3 class="text-lg font-semibold mt-4 text-yellow-400">Clássico da Casa</h3>
+      </div>
+      <div class="flex flex-col items-center group">
+        <img src="burguer2.png" alt="Duplo Smash" class="cursor-pointer w-full h-40 object-cover rounded-full shadow-lg group-hover:scale-105 transition duration-300" onclick="openImage(this.src)">
+        <h3 class="text-lg font-semibold mt-4 text-yellow-400">Podrão triplo</h3>
+      </div>
+      <div class="flex flex-col items-center group">
+        <img src="burguer4.png" alt="Barbecue Ranch" class="cursor-pointer w-full h-40 object-cover rounded-full shadow-lg group-hover:scale-105 transition duration-300" onclick="openImage(this.src)">
+        <h3 class="text-lg font-semibold mt-4 text-yellow-400">Picininha</h3>
+      </div>
+      <div class="flex flex-col items-center group">
+        <img src="molho.png" alt="Vegetariano" class="cursor-pointer w-full h-40 object-cover rounded-full shadow-lg group-hover:scale-105 transition duration-300" onclick="openImage(this.src)">
+        <h3 class="text-lg font-semibold mt-4 text-yellow-400">Maionese verde</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 hidden">
+    <img id="lightbox-img" src="" class="max-w-4xl max-h-[90vh] rounded-xl shadow-lg" />
+  </div>
+
+  <!-- Feedback Swiper -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+  <section id="feedbacks" class="bg-black py-20 px-6 text-white max-w-6xl mx-auto">
+    <h2 class="text-4xl font-bold mb-12 text-center">O que nossos clientes dizem</h2>
+    <div class="swiper feedbackSwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide p-6 bg-gray-900 rounded-lg shadow-lg">
+          <p class="mb-4 italic">"Melhor hambúrguer que já comi! Atendimento impecável e sabor incrível."</p>
+          <div class="flex items-center mb-2">
+            <div class="flex text-yellow-400 space-x-1">★★★★★</div>
+            <span class="ml-3 text-sm text-gray-400">João P.</span>
+          </div>
+        </div>
+        <div class="swiper-slide p-6 bg-gray-900 rounded-lg shadow-lg">
+          <p class="mb-4 italic">"Ambiente agradável e hambúrguer artesanal de alta qualidade. Recomendo demais!"</p>
+          <div class="flex items-center mb-2">
+            <div class="flex text-yellow-400 space-x-1">★★★★☆</div>
+            <span class="ml-3 text-sm text-gray-400">Maria L.</span>
+          </div>
+        </div>
+        <div class="swiper-slide p-6 bg-gray-900 rounded-lg shadow-lg">
+          <p class="mb-4 italic">"Ótimo custo-benefício, sabor incrível e atendimento nota 10!"</p>
+          <div class="flex items-center mb-2">
+            <div class="flex text-yellow-400 space-x-1">★★★★★</div>
+            <span class="ml-3 text-sm text-gray-400">Carlos S.</span>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-pagination mt-6"></div>
+    </div>
+  </section>
+
+  <!-- Seção Sobre -->
+  <section id="sobre" class="py-24 px-6 bg-gradient-to-r from-black via-yellow-800 to-yellow-400 text-white max-w-7xl mx-auto rounded-3xl shadow-2xl overflow-hidden relative my-20">
+    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-yellow-500/20 to-transparent pointer-events-none"></div>
+    <div class="max-w-5xl mx-auto mb-12 rounded-lg overflow-hidden shadow-lg relative">
+      <img src="bunner.png" alt="Banner Hamburgueria" class="w-full h-48 object-cover" />
+      <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+        <h3 class="text-3xl md:text-4xl font-extrabold text-yellow-400 drop-shadow-lg px-4 text-center"></h3>
+      </div>
+    </div>
+    <h2 class="text-5xl font-extrabold mb-12 text-center tracking-wide drop-shadow-lg">Quem Somos</h2>
+    <div class="flex flex-col md:flex-row items-center gap-12 max-w-5xl mx-auto">
+      <div class="md:w-1/2 space-y-6 text-lg leading-relaxed font-light">
+        <p>Na nossa hamburgueria, cada hambúrguer é uma obra-prima feita com paixão e ingredientes selecionados.</p>
+        <p>Nosso ambiente combina o charme do clássico com o toque moderno. Venha viver essa experiência dourada!</p>
+        <button class="mt-6 px-8 py-3 bg-yellow-500 hover:bg-yellow-600 text-black font-semibold rounded-full shadow-lg transition duration-300">
+          Conheça nosso cardápio
+        </button>
+      </div>
+      <div class="md:w-1/2 relative rounded-xl overflow-hidden shadow-2xl">
+        <img src="foto1.jpg" alt="Hambúrguer gourmet" class="cursor-pointer w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105" onclick="openImage(this.src)" />
+        <div class="absolute inset-0 bg-black bg-opacity-30"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+  <script>
+    const swiper = new Swiper('.feedbackSwiper', {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      autoplay: {
+        delay: 4000,
+        disableOnInteraction: false,
+      },
+    });
+
+    function openImage(src) {
+      const lightbox = document.getElementById("lightbox");
+      const img = document.getElementById("lightbox-img");
+      img.src = src;
+      lightbox.classList.remove("hidden");
+    }
+
+    document.getElementById("lightbox").addEventListener("click", () => {
+      document.getElementById("lightbox").classList.add("hidden");
+    });
+
+    const menuBtn = document.getElementById("menuBtn");
+    const menu = document.getElementById("menu");
+
+    menuBtn.addEventListener("click", () => {
+      menu.classList.toggle("hidden");
+      menu.classList.toggle("flex");
+      menu.classList.toggle("flex-col");
+      menu.classList.toggle("absolute");
+      menu.classList.toggle("top-20");
+      menu.classList.toggle("right-6");
+      menu.classList.toggle("bg-black");
+      menu.classList.toggle("p-4");
+      menu.classList.toggle("rounded-lg");
+    });
+  </script>
+
+
+
+<footer class="bg-gray-900 text-white py-10 px-6 mt-20">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+      <div>
+        <h3 class="text-xl font-bold mb-3">Hamburgueria Diadorin</h3>
+        <p class="text-gray-400">Sabores artesanais que conquistam o seu paladar. Venha nos visitar!</p>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-2">Links Rápidos</h4>
+        <ul class="space-y-1 text-gray-300">
+          <li><a href="#cardapio" class="hover:text-yellow-400">Cardápio</a></li>
+          <li><a href="#sobre" class="hover:text-yellow-400">Sobre</a></li>
+          <li><a href="#feedbacks" class="hover:text-yellow-400">Feedback</a></li>
+          <li><a href="#contato" class="hover:text-yellow-400">Contato</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-2">Formas de Pagamento</h4>
+        <p class="text-gray-400">Aceitamos:</p>
+        <ul class="text-gray-300 mt-2 space-y-1">
+          <li>Cartão de Crédito/Débito</li>
+          <li>Pix</li>
+          <li>Dinheiro</li>
+          <li>iFood</li>
+        </ul>
+      </div>
+       <div>
+        <h4 class="font-semibold mb-2">Endereço - Localização</h4>
+        <p class="text-gray-400">Estamos no</p>
+        <ul class="text-gray-300 mt-2 space-y-1">
+          <li>Rua chapada de minas, 03</li>
+          <li>Vila andrade, São paulo - SP</li>
+          <li>NÃO TEMOS LUGAR FISICO</li>
+          <li>SOMENTE DELIVERY</li>
+        </ul>
+      </div>
+    </div>
+    <div class="text-center text-gray-500 text-sm mt-10">© 2025 Hamburgueria. Todos os direitos reservados.</div>
+  </footer>
+
+  <!-- Botões flutuantes -->
+  <a href="https://wa.me/11911653936" target="_blank" class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg z-50">
+    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4a16 16 0 0 0-5-1 16 16 0 0 0-7 1c-4 2-7 6-7 11 0 2 1 4 2 6L1 23l3-1c2 1 4 2 7 2 5 0 9-3 11-7a16 16 0 0 0 1-5c0-2-1-4-2-6zm-9 15c-2 0-4-1-5-2l1-4 2 1c1-1 2-2 3-3l-1-2 4-1c1 2 2 4 1 6-1 2-3 4-6 5z"/></svg>
+  </a>
+
+  <a href="https://www.ifood.com.br/delivery/sao-paulo-sp/podrao-burguer---diadorin-parque-reboucas/46820d96-1f08-49ef-b7e9-d8d9ebd5d210?UTM_Medium=share" target="_blank" class="fixed bottom-20 right-6 bg-red-500 hover:bg-red-600 text-white p-4 rounded-full shadow-lg z-50">
+    <img src="icone.jpg" alt="iFood" class="w-7 h-7 object-contain" />
+  </a>
+
+
+</body>
+</html>
